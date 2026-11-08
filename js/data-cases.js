@@ -9632,5 +9632,1310 @@ DATA.cases = [
       "Forgetting to say assumptions. Say 'I will assume...' and invite correction.",
       "Leaving compliance to the end. Raise it at the start."
     ]
+  },
+  {
+    "id": "delinquency-rise",
+    "title": "Delinquency Rose 15% in the Latest Cohort",
+    "track": [
+      "banking"
+    ],
+    "framework": "metric",
+    "difficulty": "Medium",
+    "minutes": 25,
+    "prompt": "Delinquency rose 15% in our latest cohort of new credit card accounts. What is going on, and what do you do?",
+    "clarify": [
+      {
+        "q": "How do you define delinquency?",
+        "a": "30 or more days past due, measured as a share of accounts."
+      },
+      {
+        "q": "Is 15% relative or in points?",
+        "a": "Relative. It went from 4.0% to 4.6%, which is +0.6 points."
+      },
+      {
+        "q": "Are the cohorts compared at the same months on book?",
+        "a": "Yes. Both are measured at 3 months on book."
+      },
+      {
+        "q": "How big is the cohort and the average balance?",
+        "a": "100,000 new accounts in each cohort, with an average balance of $2,000."
+      },
+      {
+        "q": "Did anything change in approval rules or marketing channels?",
+        "a": "Yes. The approval cutoff was lowered a little in the latest cohort. Ask for the split by credit score band."
+      },
+      {
+        "q": "What happens to a late account, and what does an account earn?",
+        "a": "Assume 40% of late accounts end in loss. A subprime account earns about $150 a year."
+      }
+    ],
+    "tables": [
+      {
+        "title": "What the interviewer shares if you ask (assumptions)",
+        "headers": [
+          "Item",
+          "Value",
+          "Note"
+        ],
+        "rows": [
+          [
+            "Delinquency",
+            "4.0% old, 4.6% new",
+            "+0.6 points, which is +15%"
+          ],
+          [
+            "Cohort size",
+            "100K accounts each, average balance $2,000",
+            "Same months on book"
+          ],
+          [
+            "Old mix",
+            "Prime 60K at 2%, near-prime 30K at 6%, subprime 10K at 10%",
+            "4,000 late accounts"
+          ],
+          [
+            "New mix",
+            "Prime 50K at 2%, near-prime 30K at 6%, subprime 20K at 9%",
+            "4,600 late accounts"
+          ],
+          [
+            "Loss and revenue",
+            "40% of late accounts go to loss. A subprime account earns $150 a year",
+            "Assumed"
+          ]
+        ]
+      }
+    ],
+    "answer": {
+      "speak": [
+        [
+          "C: Clarify",
+          "I'll define delinquency as 30+ days past due, as a share of accounts. It went from 4.0% to 4.6%, so +0.6 points or +15% relative. I'll compare cohorts at the same months on book. Is that right?"
+        ],
+        [
+          "L: Lay out",
+          "Three buckets: who we booked, how we booked them, and outside or data causes."
+        ],
+        [
+          "E: Evaluate",
+          "First I rule out data issues. Then I split by credit score band, because a mix shift looks like a quality problem in the total."
+        ],
+        [
+          "A: Assess",
+          "The subprime share doubled, from 10% to 20% of the cohort. That adds 0.8 points. Within each band the rate is flat or better, which is -0.2 points. So it is mix, not worse behavior."
+        ],
+        [
+          "R: Recommend",
+          "I'd keep the wider cutoff, since a new subprime account nets about $78 after losses, but add a trigger: if subprime delinquency passes 11%, tighten. Next step: pull the approval-cutoff change log by Friday."
+        ]
+      ],
+      "exampleChart": "flowchart TD\nC[\"C: Clarify\"]\nC --> C1[\"Define it<br/>30+ days late?<br/>% of accounts\"]\nC --> C2[\"Size it<br/>4.0% to 4.6%<br/>+0.6 points\"]\nC --> C3[\"Compare fairly<br/>Same months on book<br/>Same cohort size\"]\nC1 --> L\nC2 --> L\nC3 --> L\nL[\"L: Lay out\"]\nL --> L1[\"Who we booked<br/>Mix of credit<br/>scores, channels\"]\nL --> L2[\"How we booked<br/>Approval cutoff,<br/>limits, pricing\"]\nL --> L3[\"Outside and data<br/>Economy, collections,<br/>reporting errors\"]\nL1 --> E\nL2 --> E\nL3 --> E\nE[\"E: Evaluate<br/>Rule out data, then split by segment\"]\nE --> E1[\"Data check<br/>Same definition<br/>Same months on book\"]\nE --> E2[\"Split by score<br/>Prime, near-prime,<br/>subprime\"]\nE --> E3[\"Mix vs rate<br/>How much is who<br/>vs how they behave\"]\nE1 --> A\nE2 --> A\nE3 --> A\nA[\"A: Assess\"]\nA --> A1[\"Mix effect<br/>Subprime share<br/>10% to 20%<br/>+0.8 points\"]\nA --> A2[\"Rate effect<br/>Within each group<br/>flat or better<br/>-0.2 points\"]\nA --> A3[\"Money<br/>+600 accounts x $2,000<br/>x 40% = $480K<br/>extra loss\"]\nA1 --> R\nA2 --> R\nA3 --> R\nR[\"R: Recommend<br/>Not a credit-quality collapse: a mix shift<br/>Keep the wider cutoff but watch it<br/>Net +$78 per new subprime account<br/>Trigger: subprime above 11% means tighten\"]\nP1[\"Test 1: subprime rate 11%<br/>Total 5.0% = +25%<br/>Tighten cutoff\"]\nP2[\"Test 2: cutoff back to 640<br/>Mix returns, total 4.0%<br/>Lose 10K accounts\"]\nP3[\"Test 3: only 3 months on book<br/>Compare to old cohort at 3 months<br/>Otherwise too early\"]\nR --> P1\nR --> P2\nR --> P3\nclassDef c1 fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px,color:#000;\nclassDef c2 fill:#E8F5E9,stroke:#43A047,stroke-width:2px,color:#000;\nclassDef c3 fill:#FFF3E0,stroke:#FB8C00,stroke-width:2px,color:#000;\nclassDef c4 fill:#EDE7F6,stroke:#5E35B1,stroke-width:2px,color:#000;\nclassDef c5 fill:#F1F8E9,stroke:#7CB342,stroke-width:2px,color:#000;\nclassDef c6 fill:#FFFDE7,stroke:#F9A825,stroke-width:2px,color:#000;\nclassDef c7 fill:#FFEBEE,stroke:#E53935,stroke-width:2px,color:#000;\nclass C,C1,C2,C3 c1;\nclass L,L1,L2,L3 c2;\nclass E c3;\nclass E1,E2,E3 c6;\nclass A,A1,A2,A3 c4;\nclass R c5;\nclass P1,P2,P3 c7;",
+      "exampleCharts": [
+        {
+          "id": "numbers",
+          "title": "The numbers in one chart",
+          "note": "Read top to bottom. Each box is one step of the math; the bold number is the result.",
+          "code": "flowchart TD\nS[\"1 Late accounts<br/>Old: 4,000 of 100K = 4.0%<br/>New: 4,600 of 100K = 4.6%<br/>Change: +15%\"]\nS --> M[\"2 Mix effect<br/>New mix at old rates<br/>1,000 + 1,800 + 2,000 = 4,800<br/>= 4.8%, so <b>+0.8 points</b>\"]\nM --> R[\"3 Rate effect<br/>4,600 - 4,800 = -200<br/>= <b>-0.2 points</b>\"]\nR --> K[\"4 Check<br/>+0.8 - 0.2 = <b>+0.6 points</b><br/>Matches 4.0% to 4.6%\"]\nK --> D[\"5 Money<br/>600 extra late x $2,000 x 40% = <b>$480K</b> loss<br/>Net per new subprime account +$78\"]\nclassDef c1 fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px,color:#000;\nclassDef c2 fill:#E8F5E9,stroke:#43A047,stroke-width:2px,color:#000;\nclassDef c3 fill:#FFF3E0,stroke:#FB8C00,stroke-width:2px,color:#000;\nclassDef c4 fill:#EDE7F6,stroke:#5E35B1,stroke-width:2px,color:#000;\nclassDef c5 fill:#F1F8E9,stroke:#7CB342,stroke-width:2px,color:#000;\nclass S c1;\nclass M c2;\nclass R c3;\nclass K c4;\nclass D c5;"
+        }
+      ],
+      "exampleTables": [
+        {
+          "title": "Step by step: what to do and why",
+          "headers": [
+            "Step",
+            "What you do",
+            "Why it matters",
+            "In this case"
+          ],
+          "rows": [
+            [
+              "C Clarify",
+              "Define delinquency. Check it is relative or in points. Ask for months on book",
+              "A fair comparison comes first",
+              "30+ days late, 4.0% to 4.6%, both at 3 months on book"
+            ],
+            [
+              "L Lay out",
+              "Three buckets: who we booked, how we booked them, outside and data",
+              "Keeps you from jumping to one cause",
+              "Mix of scores, approval cutoff, economy and reporting"
+            ],
+            [
+              "E Evaluate",
+              "Rule out data issues, split by score band, then separate mix from rate",
+              "A total can hide the real story",
+              "Subprime share 10% to 20%"
+            ],
+            [
+              "A Assess",
+              "Size the mix effect, the rate effect and the money",
+              "Shows what is driving the change",
+              "+0.8 points mix, -0.2 points rate, $480K extra loss"
+            ],
+            [
+              "R Recommend",
+              "Answer first, then a trigger and a next step",
+              "Gives a decision, not a list",
+              "Keep the cutoff, watch subprime, tighten above 11%"
+            ]
+          ]
+        },
+        {
+          "title": "The numbers, one simple example",
+          "headers": [
+            "Step",
+            "What we are working out",
+            "The math",
+            "Result"
+          ],
+          "rows": [
+            [
+              "1",
+              "Total change",
+              "4,600 / 4,000 = 1.15",
+              "+15%, +0.6 points"
+            ],
+            [
+              "2",
+              "Mix effect: new mix at old rates",
+              "50K x 2% + 30K x 6% + 20K x 10% = 1,000 + 1,800 + 2,000",
+              "4,800 = 4.8%, +0.8 points"
+            ],
+            [
+              "3",
+              "Rate effect",
+              "4,600 - 4,800",
+              "-200 = -0.2 points"
+            ],
+            [
+              "4",
+              "Extra loss",
+              "600 extra late x $2,000 x 40%",
+              "$480K"
+            ],
+            [
+              "5",
+              "Loss per subprime account",
+              "9% x 40% x $2,000",
+              "$72"
+            ],
+            [
+              "6",
+              "Net per subprime account and in total",
+              "$150 - $72 = $78. 10K extra accounts x $78",
+              "+$78 each, +$780K"
+            ]
+          ]
+        },
+        {
+          "title": "Try changing one number",
+          "headers": [
+            "If this changes...",
+            "Result",
+            "What it tells you"
+          ],
+          "rows": [
+            [
+              "Subprime rate is 11%, not 9%",
+              "1,000 + 1,800 + 20K x 11% = 5,000, which is 5.0% (+25%)",
+              "Behavior got worse too. Tighten the cutoff"
+            ],
+            [
+              "Cutoff goes back to 640",
+              "Subprime back to 10K, total back to 4.0%",
+              "Delinquency falls, but you lose 10K accounts and $780K net"
+            ],
+            [
+              "The cohort is only 3 months old",
+              "Compare with the old cohort at 3 months",
+              "Otherwise it is too early to judge"
+            ],
+            [
+              "Loss rate is 60%, not 40%",
+              "Loss per subprime account 9% x 60% x $2,000 = $108. Net $150 - $108 = $42",
+              "Still positive, but the margin shrinks"
+            ]
+          ]
+        },
+        {
+          "title": "Algebra and break-even you may be asked",
+          "headers": [
+            "Question you may be asked",
+            "Set up the equation",
+            "Solve"
+          ],
+          "rows": [
+            [
+              "At what subprime rate does a new account break even?",
+              "Rate x 40% x $2,000 = $150",
+              "Rate = 150 / 800 = 18.75%"
+            ],
+            [
+              "At what loss rate does a subprime account break even?",
+              "9% x loss rate x $2,000 = $150",
+              "Loss rate = 150 / 180 = 83%"
+            ],
+            [
+              "How many extra late accounts is +0.6 points?",
+              "0.6% x 100,000",
+              "600"
+            ]
+          ]
+        },
+        {
+          "title": "What could go wrong, and what to do",
+          "headers": [
+            "Risk",
+            "In plain words",
+            "What to do"
+          ],
+          "rows": [
+            [
+              "Subprime rate rises",
+              "Mix was not the whole story",
+              "Set a trigger at 11% and tighten the cutoff"
+            ],
+            [
+              "Reporting error",
+              "Definition changed between cohorts",
+              "Check the definition and months on book first"
+            ],
+            [
+              "Early read",
+              "The cohort is too young",
+              "Compare at the same months on book"
+            ],
+            [
+              "Losses higher than assumed",
+              "The 40% loss rate is a guess",
+              "Rerun with 60% and check it still pays"
+            ],
+            [
+              "Customer harm",
+              "Low limits or fees hurt customers",
+              "Keep starting limits modest and review fees"
+            ]
+          ]
+        },
+        {
+          "title": "Terms in plain words",
+          "headers": [
+            "Term",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Delinquency",
+              "Payment is late, here 30 or more days"
+            ],
+            [
+              "Cohort",
+              "Accounts opened in the same period"
+            ],
+            [
+              "Months on book",
+              "How long since the account opened"
+            ],
+            [
+              "Mix shift",
+              "The share of each group changes, not the group behavior"
+            ],
+            [
+              "Subprime",
+              "Customers with lower credit scores"
+            ],
+            [
+              "Roll rate",
+              "Share of late accounts that move to the next stage"
+            ],
+            [
+              "Charge-off",
+              "The lender gives up collecting and books a loss"
+            ]
+          ]
+        },
+        {
+          "title": "Common beginner mistakes",
+          "headers": [
+            "Mistake",
+            "What to do instead"
+          ],
+          "rows": [
+            [
+              "Calling it worse customers from the total alone",
+              "Split by credit score band first"
+            ],
+            [
+              "Comparing cohorts at different months on book",
+              "Compare at the same age"
+            ],
+            [
+              "Saying tighten credit right away",
+              "Check that the extra accounts still make money"
+            ],
+            [
+              "Mixing up relative and points",
+              "Say both: +15% and +0.6 points"
+            ],
+            [
+              "Skipping the money",
+              "Convert to dollars of loss and revenue"
+            ],
+            [
+              "No trigger or next step",
+              "Set a number that changes the decision, and a date"
+            ]
+          ]
+        }
+      ],
+      "table": {
+        "title": "Capital One style checklist",
+        "headers": [
+          "Do this",
+          "Why",
+          "Example here"
+        ],
+        "rows": [
+          [
+            "Restate and define the metric",
+            "Shows a business owner mindset",
+            "30+ days late, share of accounts, 4.0% to 4.6%"
+          ],
+          [
+            "Ask for the split by segment",
+            "Totals can hide a mix shift",
+            "Credit score bands and channels"
+          ],
+          [
+            "Separate mix from rate",
+            "This is the core insight",
+            "+0.8 points mix, -0.2 points rate"
+          ],
+          [
+            "Tie it to dollars",
+            "Decisions are about money",
+            "$480K extra loss, +$78 per new subprime account"
+          ],
+          [
+            "Recommend with a trigger",
+            "Gives a clear decision rule",
+            "Tighten if subprime delinquency passes 11%"
+          ]
+        ]
+      }
+    },
+    "followups": [
+      {
+        "q": "How would you confirm it is a mix shift?",
+        "a": "Split by credit score band and compare rates inside each band. If rates are flat and the subprime share doubled, the total rose because of mix."
+      },
+      {
+        "q": "What if all bands got worse?",
+        "a": "Then look at things that affect everyone: the economy, collections performance, underwriting data quality and credit limits. Check early-stage delinquency by month."
+      },
+      {
+        "q": "Would you tighten the cutoff?",
+        "a": "Not yet. A new subprime account nets about $78 after losses. I would set a trigger at 11% subprime delinquency and review again at 6 months on book."
+      },
+      {
+        "q": "What other metrics would you watch?",
+        "a": "Roll rate to 60 days, early payment default, utilization, and net loss per account by band."
+      },
+      {
+        "q": "What would change your mind?",
+        "a": "If subprime delinquency reaches 11% or the loss rate is 60% or more at higher limits, I would tighten the cutoff or cut starting limits."
+      }
+    ],
+    "pitfalls": [
+      "Treating the total as proof that customers got riskier. Split by segment first.",
+      "Comparing cohorts at different months on book.",
+      "Saying tighten credit before checking whether the extra accounts still make money.",
+      "Mixing up relative change (+15%) and points (+0.6).",
+      "Giving no trigger or next step. End with a number and a date."
+    ]
+  },
+  {
+    "id": "coffee-shop-profit",
+    "title": "Coffee Shop Profit Recovery",
+    "track": [
+      "consulting"
+    ],
+    "framework": "profitability",
+    "difficulty": "Easy",
+    "minutes": 20,
+    "prompt": "You are advising the owner of a small coffee shop. Profit has fallen from $34K to $20K in one year. The owner wants profit back to $34K within 12 months and has $10K to spend. The owner is also wondering whether to open a second shop. What do you recommend?",
+    "clarify": [
+      {
+        "q": "Is the goal $34K a year, and does it include the owner's pay?",
+        "a": "$34K a year of profit after all costs. Treat it as the owner's profit."
+      },
+      {
+        "q": "What are customers a day, ticket and days open, this year and last?",
+        "a": "360 days open. Last year 150 customers a day at $5. This year 140 a day at $5."
+      },
+      {
+        "q": "What are the main costs?",
+        "a": "Last year: ingredients $81K (30%), labor $110K, rent $36K, other $9K. This year: ingredients $76K, labor $111K, rent $36K, other $9K."
+      },
+      {
+        "q": "What changed this year?",
+        "a": "A new coffee chain opened nearby and the morning rush is smaller. Hours and prices did not change."
+      },
+      {
+        "q": "What would a second shop cost?",
+        "a": "About $90K to open. The owner would need a loan."
+      },
+      {
+        "q": "How is labor scheduled today?",
+        "a": "The same staff on every shift, even in slow afternoons."
+      },
+      {
+        "q": "Is there a loyalty program or food menu?",
+        "a": "No loyalty card. A few pastries sold at the counter, with no coffee and pastry bundle."
+      }
+    ],
+    "tables": [
+      {
+        "title": "What the interviewer shares if you ask (assumptions)",
+        "headers": [
+          "Item",
+          "Value",
+          "Note"
+        ],
+        "rows": [
+          [
+            "Profit",
+            "$34K last year, $20K this year",
+            "Gap of $14K"
+          ],
+          [
+            "Revenue",
+            "$270K last year, $252K this year",
+            "150 x $5 x 360 and 140 x $5 x 360"
+          ],
+          [
+            "Costs",
+            "$236K last year, $232K this year",
+            "Labor is nearly fixed"
+          ],
+          [
+            "Budget",
+            "$10K",
+            "Keep a reserve"
+          ],
+          [
+            "Second shop",
+            "About $90K to open",
+            "Assumed"
+          ],
+          [
+            "Margin on extra sales",
+            "About 70%",
+            "Ingredients are 30% of sales"
+          ]
+        ]
+      }
+    ],
+    "answer": {
+      "speak": [
+        [
+          "C: Clarify",
+          "So profit fell from $34K to $20K and the goal is $34K again within 12 months, which is +$14K. You have $10K to spend, and you are asking whether to open a second shop. Is that right?"
+        ],
+        [
+          "L: Lay out",
+          "Profit is revenue minus costs. Revenue is customers times average ticket. Costs are ingredients, labor, rent and other. Then I'll compare fixing this shop with opening another."
+        ],
+        [
+          "E: Evaluate",
+          "Revenue fell $18K and costs fell only $4K, so profit fell $14K. Customers dropped from 150 to 140 a day, which is 6.7%, and the ticket stayed at $5. Labor did not flex with the lower traffic."
+        ],
+        [
+          "A: Assess",
+          "Three fixes: a loyalty card worth about $3.8K, an add-on upsell worth $6.2K and a smarter schedule worth $7.0K. Together that is $17.0K a year for about $4K."
+        ],
+        [
+          "R: Recommend",
+          "I'd fix this shop first and not open a second one yet. Run rate profit goes to about $37K, above the goal, and I keep $6K in reserve. A second shop needs about $90K. Open one only after two quarters at $34K. Next step: pull sales by hour this week to choose which hours to cut."
+        ]
+      ],
+      "exampleChart": "flowchart TD\nC[\"C: Clarify\"]\nC --> C1[\"Goal<br/>Profit $20K to $34K<br/>= +$14K in 12 months\"]\nC --> C2[\"Budget<br/>$10K to spend<br/>One shop today\"]\nC --> C3[\"Question<br/>Open a second shop<br/>or fix this one?\"]\nC1 --> L\nC2 --> L\nC3 --> L\nL[\"L: Lay out\"]\nL --> L1[\"Revenue<br/>Customers x<br/>average ticket\"]\nL --> L2[\"Costs<br/>Ingredients, labor,<br/>rent, other\"]\nL --> L3[\"Options<br/>Fix shop 1,<br/>or open shop 2\"]\nL1 --> E\nL2 --> E\nL3 --> E\nE[\"E: Evaluate<br/>Find where the $14K went\"]\nE --> E1[\"Profit bridge<br/>Revenue -$18K<br/>Costs -$4K<br/>= <b>-$14K</b>\"]\nE --> E2[\"Revenue driver<br/>Customers 150 to 140 a day<br/>-6.7%, ticket flat at $5\"]\nE --> E3[\"Cost driver<br/>Labor did not flex<br/>$110K to $111K\"]\nE1 --> A\nE2 --> A\nE3 --> A\nA[\"A: Assess\"]\nA --> A1[\"Loyalty card<br/>+5 customers a day<br/>x 60% sure = <b>$3.8K</b>\"]\nA --> A2[\"Add-on upsell<br/>+$0.25 per ticket<br/>x 70% sure = <b>$6.2K</b>\"]\nA --> A3[\"Smarter schedule<br/>10 fewer slow hours a week<br/>x 90% sure = <b>$7.0K</b>\"]\nA1 --> R\nA2 --> R\nA3 --> R\nR[\"R: Recommend<br/>Fix shop 1 first. Do all three: $17.0K a year for $4K<br/>Run rate $37K, above the $34K goal. Keep $6K in reserve<br/>No second shop yet: it needs about $90K<br/>Gate: $34K profit for two quarters\"]\nP1[\"Test 1: loyalty adds only 2 a day<br/>Total $14.7K<br/>Still reaches the goal\"]\nP2[\"Test 2: upsell fails<br/>Total $10.8K, short $3.2K<br/>Cut more slow hours\"]\nP3[\"Test 3: owner wants shop 2<br/>$90K vs $10K<br/>Payback 4.5 years now\"]\nR --> P1\nR --> P2\nR --> P3\nclassDef c1 fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px,color:#000;\nclassDef c2 fill:#E8F5E9,stroke:#43A047,stroke-width:2px,color:#000;\nclassDef c3 fill:#FFF3E0,stroke:#FB8C00,stroke-width:2px,color:#000;\nclassDef c4 fill:#EDE7F6,stroke:#5E35B1,stroke-width:2px,color:#000;\nclassDef c5 fill:#F1F8E9,stroke:#7CB342,stroke-width:2px,color:#000;\nclassDef c6 fill:#FFFDE7,stroke:#F9A825,stroke-width:2px,color:#000;\nclassDef c7 fill:#FFEBEE,stroke:#E53935,stroke-width:2px,color:#000;\nclass C,C1,C2,C3 c1;\nclass L,L1,L2,L3 c2;\nclass E c3;\nclass E1,E2,E3 c6;\nclass A,A1,A2,A3 c4;\nclass R c5;\nclass P1,P2,P3 c7;",
+      "exampleCharts": [
+        {
+          "id": "numbers",
+          "title": "The numbers in one chart",
+          "note": "Read top to bottom. Each box is one step of the math; the bold number is the result.",
+          "code": "flowchart TD\nS[\"1 Profit bridge<br/>Revenue $270K to $252K = -$18K<br/>Costs $236K to $232K = -$4K<br/>Profit $34K to $20K = <b>-$14K</b>\"]\nS --> M[\"2 Three fixes a year<br/>Loyalty $3,780<br/>Upsell $6,174<br/>Schedule $7,020\"]\nM --> R[\"3 Total<br/>3,780 + 6,174 + 7,020<br/>= <b>$16,974</b> for $4,000\"]\nR --> K[\"4 Run rate profit<br/>$20,000 + $16,974<br/>= <b>$36,974</b>, above $34K\"]\nK --> D[\"5 First year<br/>$36,974 - $4,000 = $32,974<br/>About $1K short. $6K kept in reserve\"]\nclassDef c1 fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px,color:#000;\nclassDef c2 fill:#E8F5E9,stroke:#43A047,stroke-width:2px,color:#000;\nclassDef c3 fill:#FFF3E0,stroke:#FB8C00,stroke-width:2px,color:#000;\nclassDef c4 fill:#EDE7F6,stroke:#5E35B1,stroke-width:2px,color:#000;\nclassDef c5 fill:#F1F8E9,stroke:#7CB342,stroke-width:2px,color:#000;\nclass S c1;\nclass M c2;\nclass R c3;\nclass K c4;\nclass D c5;"
+        }
+      ],
+      "exampleTables": [
+        {
+          "title": "Step by step: what to do and why",
+          "headers": [
+            "Step",
+            "What you do",
+            "Why it matters",
+            "In this case"
+          ],
+          "rows": [
+            [
+              "C Clarify",
+              "Say the goal, the budget and the second-shop question back",
+              "Shows you listened and sets the target",
+              "+$14K in 12 months, $10K to spend"
+            ],
+            [
+              "L Lay out",
+              "Profit = revenue - costs. Revenue = customers x ticket",
+              "Gives a simple map to find the drop",
+              "Traffic, ticket, ingredients, labor, rent"
+            ],
+            [
+              "E Evaluate",
+              "Build a profit bridge from last year to this year",
+              "Finds the one or two drivers",
+              "Revenue -$18K, costs -$4K"
+            ],
+            [
+              "A Assess",
+              "Size each fix, weight it by confidence and add the cost",
+              "Shows if the goal is reachable",
+              "$17.0K a year for $4K"
+            ],
+            [
+              "R Recommend",
+              "Answer first, then the reserve, the second shop and a next step",
+              "Gives a decision",
+              "Fix shop 1, no second shop yet"
+            ]
+          ]
+        },
+        {
+          "title": "The numbers, one simple example",
+          "headers": [
+            "Step",
+            "What we are working out",
+            "The math",
+            "Result"
+          ],
+          "rows": [
+            [
+              "1",
+              "Revenue last year",
+              "150 x $5 x 360",
+              "$270,000"
+            ],
+            [
+              "2",
+              "Revenue this year",
+              "140 x $5 x 360",
+              "$252,000"
+            ],
+            [
+              "3",
+              "Costs last year and this year",
+              "81K + 110K + 36K + 9K, then 76K + 111K + 36K + 9K",
+              "$236K and $232K"
+            ],
+            [
+              "4",
+              "Profit last year and this year",
+              "270K - 236K, then 252K - 232K",
+              "$34K and $20K"
+            ],
+            [
+              "5",
+              "Loyalty card",
+              "5 x $5 x 360 = $9,000 x 70% = $6,300 x 60%",
+              "$3,780"
+            ],
+            [
+              "6",
+              "Upsell",
+              "140 x $0.25 x 360 = $12,600 x 70% = $8,820 x 70%",
+              "$6,174"
+            ],
+            [
+              "7",
+              "Schedule",
+              "10 hours x 52 weeks x $15 = $7,800 x 90%",
+              "$7,020"
+            ],
+            [
+              "8",
+              "Total and run rate profit",
+              "3,780 + 6,174 + 7,020, then $20,000 + $16,974",
+              "$16,974 and $36,974"
+            ]
+          ]
+        },
+        {
+          "title": "Try changing one number",
+          "headers": [
+            "If this changes...",
+            "Result",
+            "What it tells you"
+          ],
+          "rows": [
+            [
+              "Loyalty adds only 2 customers a day",
+              "2 x $5 x 360 x 70% x 60% = $1,512. Total $14,706",
+              "Still above the $14K gap"
+            ],
+            [
+              "The upsell does not work",
+              "$3,780 + $7,020 = $10,800",
+              "$3,200 short. Cut more slow hours and test a small price rise"
+            ],
+            [
+              "Owner wants the second shop",
+              "$90K vs $10K. Payback $90K / $20K = 4.5 years",
+              "Not now. Fix shop 1 first"
+            ],
+            [
+              "Profit reaches $34K for two quarters",
+              "Payback $90K / $34K = 2.6 years",
+              "Then revisit the second shop"
+            ]
+          ]
+        },
+        {
+          "title": "Algebra and break-even you may be asked",
+          "headers": [
+            "Question you may be asked",
+            "Set up the equation",
+            "Solve"
+          ],
+          "rows": [
+            [
+              "How many extra customers a day close the $14K gap?",
+              "x customers x $5 x 360 x 70% = $14,000",
+              "x = 14,000 / 1,260 = 11.1 customers a day"
+            ],
+            [
+              "How much must the ticket rise to close the gap?",
+              "140 x t x 360 x 70% = $14,000",
+              "t = 14,000 / 35,280 = $0.40"
+            ],
+            [
+              "How many slow hours must be cut to save $14K?",
+              "h x 52 x $15 = $14,000",
+              "h = 14,000 / 780 = 18 hours a week"
+            ]
+          ]
+        },
+        {
+          "title": "What could go wrong, and what to do",
+          "headers": [
+            "Risk",
+            "In plain words",
+            "What to do"
+          ],
+          "rows": [
+            [
+              "Loyalty does not bring customers",
+              "Rewards only give away coffee",
+              "Track new vs repeat customers and stop after 3 months if flat"
+            ],
+            [
+              "Upsell annoys customers",
+              "Staff push too hard",
+              "Offer a simple bundle and train staff to suggest once"
+            ],
+            [
+              "Cutting hours hurts service",
+              "Long lines in busy times",
+              "Cut only hours with few customers"
+            ],
+            [
+              "Competitor takes more traffic",
+              "The new chain gets stronger",
+              "Focus on loyal regulars and the morning rush"
+            ],
+            [
+              "Cash runs short",
+              "Spending all $10K",
+              "Spend about $4K and keep $6K in reserve"
+            ]
+          ]
+        },
+        {
+          "title": "Terms in plain words",
+          "headers": [
+            "Term",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Profit bridge",
+              "A walk from last year's profit to this year's, step by step"
+            ],
+            [
+              "Average ticket",
+              "Money spent per customer visit"
+            ],
+            [
+              "Contribution margin",
+              "Share of a sale left after ingredients, here 70%"
+            ],
+            [
+              "Run rate",
+              "What a year would look like at the new level"
+            ],
+            [
+              "Payback",
+              "Years to earn back the money spent"
+            ],
+            [
+              "Reserve",
+              "Cash kept aside for surprises"
+            ],
+            [
+              "Upsell",
+              "Getting a customer to add something to the order"
+            ]
+          ]
+        },
+        {
+          "title": "Common beginner mistakes",
+          "headers": [
+            "Mistake",
+            "What to do instead"
+          ],
+          "rows": [
+            [
+              "Jumping to a second shop",
+              "Fix why shop 1 lost profit first"
+            ],
+            [
+              "Not splitting revenue and costs",
+              "Build a profit bridge"
+            ],
+            [
+              "Spending the whole $10K",
+              "Keep a reserve"
+            ],
+            [
+              "Treating every idea as certain",
+              "Weight each idea by confidence"
+            ],
+            [
+              "Forgetting one-time costs",
+              "Show run rate and first-year profit"
+            ],
+            [
+              "No next step",
+              "End with an action and a date"
+            ]
+          ]
+        }
+      ],
+      "table": {
+        "title": "Cheat sheet: profit case",
+        "headers": [
+          "Do this",
+          "Why",
+          "Example here"
+        ],
+        "rows": [
+          [
+            "Restate goal, budget and question",
+            "Shows you listened",
+            "+$14K, $10K, second shop?"
+          ],
+          [
+            "Build a profit bridge",
+            "Finds the driver",
+            "Revenue -$18K, costs -$4K"
+          ],
+          [
+            "Weight ideas by confidence",
+            "Honest estimates",
+            "$17.0K expected value"
+          ],
+          [
+            "Compare with the big option",
+            "Shows judgment",
+            "Second shop $90K, payback 4.5 years"
+          ],
+          [
+            "Recommend with a gate",
+            "Clear decision rule",
+            "$34K for two quarters"
+          ]
+        ]
+      }
+    },
+    "followups": [
+      {
+        "q": "Why not open the second shop now?",
+        "a": "It needs about $90K, nine times the budget, and shop 1 is losing profit. At $20K a year, payback is 4.5 years. Fix shop 1 first and open a second only after two quarters at $34K."
+      },
+      {
+        "q": "How would you choose which hours to cut?",
+        "a": "Pull sales by hour and by weekday. Cut the hours with the fewest customers, where one person can cover the counter, and keep full staff for the morning rush."
+      },
+      {
+        "q": "What if the new competitor takes more customers?",
+        "a": "Focus on regulars with a loyalty card, protect the morning rush with speed and quality, and track repeat visits weekly."
+      },
+      {
+        "q": "How do you know the upsell works?",
+        "a": "Track the average ticket weekly. Test the bundle for four weeks and compare with the $5.00 baseline."
+      },
+      {
+        "q": "Would you raise prices?",
+        "a": "A small price rise is a fallback. A $0.40 higher ticket closes the gap alone, but it risks traffic, so test it after the other three moves."
+      }
+    ],
+    "pitfalls": [
+      "Going straight to a second shop without finding why profit fell.",
+      "Not splitting the profit drop into revenue and cost drivers.",
+      "Spending the whole $10K budget.",
+      "Counting every idea as certain instead of weighting by confidence.",
+      "Giving no gate or next step for the second shop."
+    ]
+  },
+  {
+    "id": "approval-threshold",
+    "title": "Approval Threshold and Risk Appetite",
+    "track": [
+      "banking"
+    ],
+    "framework": "metric",
+    "difficulty": "Medium",
+    "minutes": 25,
+    "prompt": "We approve credit card applicants with a score of 640 or higher. Is the current approval threshold still within our risk appetite?",
+    "clarify": [
+      {
+        "q": "How is risk appetite defined?",
+        "a": "A net loss rate of at most 5.0% of balances."
+      },
+      {
+        "q": "How big is the portfolio?",
+        "a": "500,000 accounts with an average balance of $2,000, so $1B in balances."
+      },
+      {
+        "q": "What are losses by score band?",
+        "a": "700 and above: 2.0%. 660 to 699: 4.5%. 640 to 659: 9.0%. Based on accounts with 12 months on book."
+      },
+      {
+        "q": "How many accounts are in each band?",
+        "a": "250K, 150K and 100K."
+      },
+      {
+        "q": "What changed recently?",
+        "a": "Unemployment is rising and the lowest band has grown. Ask how losses might move under stress."
+      },
+      {
+        "q": "What does an account earn?",
+        "a": "About $230 a year per account in the 640 to 659 band."
+      },
+      {
+        "q": "What would a higher cutoff cost?",
+        "a": "Raising the cutoff to 660 removes the 100K accounts in the lowest band."
+      }
+    ],
+    "tables": [
+      {
+        "title": "What the interviewer shares if you ask (assumptions)",
+        "headers": [
+          "Item",
+          "Value",
+          "Note"
+        ],
+        "rows": [
+          [
+            "Risk appetite",
+            "Net loss rate at most 5.0%",
+            "= $50M on $1B"
+          ],
+          [
+            "Portfolio",
+            "500K accounts, $2,000 each = $1B",
+            "Equal balances"
+          ],
+          [
+            "Loss by band",
+            "700+: 2.0%. 660-699: 4.5%. 640-659: 9.0%",
+            "12 months on book"
+          ],
+          [
+            "Accounts by band",
+            "250K, 150K, 100K",
+            "Marginal band is 20%"
+          ],
+          [
+            "Revenue per marginal account",
+            "$230 a year",
+            "Assumed"
+          ],
+          [
+            "Stress",
+            "Losses rise 20% to 30%",
+            "Unemployment up"
+          ]
+        ]
+      }
+    ],
+    "answer": {
+      "speak": [
+        [
+          "C: Clarify",
+          "I'll define risk appetite as a net loss rate of at most 5.0% of balances. The threshold is approve at score 640 and above, on 500K accounts with $2,000 each. I want to know today's loss rate by score band and how it behaves under stress. Is that right?"
+        ],
+        [
+          "L: Lay out",
+          "Three questions: are we under the limit today, do we stay under if losses rise, and do the accounts near the cutoff still pay?"
+        ],
+        [
+          "E: Evaluate",
+          "Losses are 2.0% for 700+, 4.5% for 660 to 699 and 9.0% for 640 to 659. Weighted, the portfolio is at 4.15%. A 20% rise gives 4.98% and a 30% rise gives 5.40%."
+        ],
+        [
+          "A: Assess",
+          "We are under the limit by 0.85 points, or $8.5M on $1B. We breach if losses rise 20.5%. The 640 to 659 band is 20% of accounts but 43% of losses."
+        ],
+        [
+          "R: Recommend",
+          "Yes, the threshold is within appetite today, but the headroom is thin. I'd keep 640 for now and set a trigger: portfolio loss at 4.5% or the marginal band above 11%. If it trips, raise the cutoff to 660, which gives 2.94% and costs about $5M a year. Next step: pull seasoned vintage losses by band by Friday."
+        ]
+      ],
+      "exampleChart": "flowchart TD\nC[\"C: Clarify\"]\nC --> C1[\"Appetite<br/>Net loss rate<br/>at most 5.0%\"]\nC --> C2[\"Threshold<br/>Approve at score 640+<br/>500K accounts, $2,000 each\"]\nC --> C3[\"What changed<br/>Economy, mix,<br/>losses by band\"]\nC1 --> L\nC2 --> L\nC3 --> L\nL[\"L: Lay out\"]\nL --> L1[\"Today<br/>Is the loss rate<br/>under the limit?\"]\nL --> L2[\"Stress<br/>Does it stay under<br/>if losses rise?\"]\nL --> L3[\"Margin<br/>Do accounts near<br/>the cutoff still pay?\"]\nL1 --> E\nL2 --> E\nL3 --> E\nE[\"E: Evaluate<br/>Compare to the limit, then stress it\"]\nE --> E1[\"Loss by band<br/>700+: 2.0%<br/>660 to 699: 4.5%<br/>640 to 659: 9.0%\"]\nE --> E2[\"Portfolio rate<br/>Weighted by accounts<br/>2,075 / 500 = <b>4.15%</b>\"]\nE --> E3[\"Stress<br/>+20% = 4.98%<br/>+30% = 5.40%\"]\nE1 --> A\nE2 --> A\nE3 --> A\nA[\"A: Assess\"]\nA --> A1[\"Headroom today<br/>5.0% - 4.15% = 0.85 pts<br/>= <b>$8.5M</b> on $1B\"]\nA --> A2[\"Breach point<br/>5.0 / 4.15 = 1.205<br/>Breach if losses rise <b>20.5%</b>\"]\nA --> A3[\"Marginal band<br/>20% of accounts<br/>but <b>43%</b> of losses\"]\nA1 --> R\nA2 --> R\nA3 --> R\nR[\"R: Recommend<br/>Yes, within appetite today, but thin headroom<br/>Keep 640 now. Trigger: loss rate 4.5% or band above 11%<br/>Then raise to 660: loss 2.94%, give up about $5M a year\"]\nP1[\"Test 1: losses up 30%<br/>5.40%, breach<br/>Raise cutoff to 660: 3.82%\"]\nP2[\"Test 2: appetite is 4.0%<br/>4.15% is already a breach<br/>Act now\"]\nP3[\"Test 3: young accounts<br/>Losses still maturing<br/>Use seasoned vintages\"]\nR --> P1\nR --> P2\nR --> P3\nclassDef c1 fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px,color:#000;\nclassDef c2 fill:#E8F5E9,stroke:#43A047,stroke-width:2px,color:#000;\nclassDef c3 fill:#FFF3E0,stroke:#FB8C00,stroke-width:2px,color:#000;\nclassDef c4 fill:#EDE7F6,stroke:#5E35B1,stroke-width:2px,color:#000;\nclassDef c5 fill:#F1F8E9,stroke:#7CB342,stroke-width:2px,color:#000;\nclassDef c6 fill:#FFFDE7,stroke:#F9A825,stroke-width:2px,color:#000;\nclassDef c7 fill:#FFEBEE,stroke:#E53935,stroke-width:2px,color:#000;\nclass C,C1,C2,C3 c1;\nclass L,L1,L2,L3 c2;\nclass E c3;\nclass E1,E2,E3 c6;\nclass A,A1,A2,A3 c4;\nclass R c5;\nclass P1,P2,P3 c7;",
+      "exampleCharts": [
+        {
+          "id": "numbers",
+          "title": "The numbers in one chart",
+          "note": "Read top to bottom. Each box is one step of the math; the bold number is the result.",
+          "code": "flowchart TD\nS[\"1 Weighted loss rate<br/>250K x 2.0% + 150K x 4.5% + 100K x 9.0%<br/>= 2,075 / 500 = <b>4.15%</b>\"]\nS --> M[\"2 Headroom<br/>Limit 5.0% - 4.15% = 0.85 points<br/>= <b>$8.5M</b> on $1B\"]\nM --> R[\"3 Breach point<br/>5.0 / 4.15 = 1.205<br/>Losses can rise <b>20.5%</b>\"]\nR --> K[\"4 Marginal band<br/>9.0% x 100K = 900 of 2,075<br/>= <b>43%</b> of losses from 20% of accounts\"]\nK --> D[\"5 Money<br/>$230 - 9.0% x $2,000 = +$50 each = $5M<br/>At +30% stress: $230 - $234 = -$4\"]\nclassDef c1 fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px,color:#000;\nclassDef c2 fill:#E8F5E9,stroke:#43A047,stroke-width:2px,color:#000;\nclassDef c3 fill:#FFF3E0,stroke:#FB8C00,stroke-width:2px,color:#000;\nclassDef c4 fill:#EDE7F6,stroke:#5E35B1,stroke-width:2px,color:#000;\nclassDef c5 fill:#F1F8E9,stroke:#7CB342,stroke-width:2px,color:#000;\nclass S c1;\nclass M c2;\nclass R c3;\nclass K c4;\nclass D c5;"
+        }
+      ],
+      "exampleTables": [
+        {
+          "title": "Step by step: what to do and why",
+          "headers": [
+            "Step",
+            "What you do",
+            "Why it matters",
+            "In this case"
+          ],
+          "rows": [
+            [
+              "C Clarify",
+              "Define the appetite metric and the limit. Ask for data by band",
+              "You cannot judge a limit you have not defined",
+              "Net loss at most 5.0%, loss rates by band"
+            ],
+            [
+              "L Lay out",
+              "Today, stress and margin",
+              "Covers current and future risk",
+              "Under the limit? Stay under? Do marginal accounts pay?"
+            ],
+            [
+              "E Evaluate",
+              "Weight losses by band, compare with the limit, then stress",
+              "Totals hide the weak band",
+              "4.15% today, 5.40% at +30%"
+            ],
+            [
+              "A Assess",
+              "Size headroom, breach point and the marginal band",
+              "Shows how thin the margin is",
+              "0.85 points, 20.5%, 43% of losses"
+            ],
+            [
+              "R Recommend",
+              "Answer first, then a trigger and a fallback",
+              "Gives a decision rule",
+              "Keep 640, tighten to 660 if the trigger trips"
+            ]
+          ]
+        },
+        {
+          "title": "The numbers, one simple example",
+          "headers": [
+            "Step",
+            "What we are working out",
+            "The math",
+            "Result"
+          ],
+          "rows": [
+            [
+              "1",
+              "Weighted loss",
+              "250 x 2.0 + 150 x 4.5 + 100 x 9.0 = 500 + 675 + 900",
+              "2,075"
+            ],
+            [
+              "2",
+              "Portfolio loss rate",
+              "2,075 / 500",
+              "4.15%"
+            ],
+            [
+              "3",
+              "Loss in dollars and limit",
+              "4.15% x $1B, and 5.0% x $1B",
+              "$41.5M and $50M"
+            ],
+            [
+              "4",
+              "Headroom",
+              "5.0% - 4.15%",
+              "0.85 points = $8.5M"
+            ],
+            [
+              "5",
+              "Breach point",
+              "5.0 / 4.15",
+              "1.205, so losses can rise 20.5%"
+            ],
+            [
+              "6",
+              "Marginal band share of losses",
+              "900 / 2,075",
+              "43%"
+            ],
+            [
+              "7",
+              "Cutoff at 660",
+              "(500 + 675) / 400K",
+              "2.94%"
+            ],
+            [
+              "8",
+              "Marginal band profit",
+              "$230 - 9.0% x $2,000 = $50, x 100K",
+              "$5M a year"
+            ]
+          ]
+        },
+        {
+          "title": "Try changing one number",
+          "headers": [
+            "If this changes...",
+            "Result",
+            "What it tells you"
+          ],
+          "rows": [
+            [
+              "Losses rise 30%",
+              "4.15% x 1.3 = 5.40%",
+              "Breach. At 660: 2.94% x 1.3 = 3.82%"
+            ],
+            [
+              "Appetite is 4.0%, not 5.0%",
+              "4.15% > 4.0%",
+              "Already outside. Act now, for example raise to 660"
+            ],
+            [
+              "Accounts are only 6 months old",
+              "Losses are still maturing",
+              "Use seasoned vintages at the same months on book"
+            ],
+            [
+              "Revenue per account is $300",
+              "$300 - $234 = +$66 under stress",
+              "The marginal band still pays. Keep 640 and watch"
+            ]
+          ]
+        },
+        {
+          "title": "Algebra and break-even you may be asked",
+          "headers": [
+            "Question you may be asked",
+            "Set up the equation",
+            "Solve"
+          ],
+          "rows": [
+            [
+              "How much can losses rise before a breach?",
+              "4.15% x (1 + u) = 5.0%",
+              "u = 5.0 / 4.15 - 1 = 20.5%"
+            ],
+            [
+              "At what loss rate does a marginal account break even?",
+              "Rate x $2,000 = $230",
+              "Rate = 11.5%"
+            ],
+            [
+              "What marginal loss rate breaches the portfolio limit?",
+              "(500 + 675 + 100 x r) / 500 = 5.0",
+              "100 x r = 1,325, so r = 13.25%"
+            ]
+          ]
+        },
+        {
+          "title": "What could go wrong, and what to do",
+          "headers": [
+            "Risk",
+            "In plain words",
+            "What to do"
+          ],
+          "rows": [
+            [
+              "Losses rise in a downturn",
+              "The margin is only 0.85 points",
+              "Set a trigger at 4.5% and plan a move to 660"
+            ],
+            [
+              "Young accounts look good",
+              "Losses are still maturing",
+              "Use seasoned vintages"
+            ],
+            [
+              "Only the average is watched",
+              "The marginal band hides the risk",
+              "Track each band"
+            ],
+            [
+              "Cutting the band loses profit",
+              "About $5M a year",
+              "Weigh loss avoided against profit given up"
+            ],
+            [
+              "Customer harm",
+              "Approving people who cannot repay",
+              "Keep limits modest and review fees"
+            ]
+          ]
+        },
+        {
+          "title": "Terms in plain words",
+          "headers": [
+            "Term",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Risk appetite",
+              "How much loss the company is willing to accept"
+            ],
+            [
+              "Approval threshold",
+              "The score needed to be approved"
+            ],
+            [
+              "Net loss rate",
+              "Losses after recoveries as a share of balances"
+            ],
+            [
+              "Headroom",
+              "Room left before the limit"
+            ],
+            [
+              "Stress test",
+              "Rerunning the numbers under worse conditions"
+            ],
+            [
+              "Vintage",
+              "Accounts opened in the same period"
+            ],
+            [
+              "Marginal band",
+              "The group closest to the cutoff"
+            ]
+          ]
+        },
+        {
+          "title": "Common beginner mistakes",
+          "headers": [
+            "Mistake",
+            "What to do instead"
+          ],
+          "rows": [
+            [
+              "Checking only today's loss rate",
+              "Stress it and find the breach point"
+            ],
+            [
+              "Judging young accounts",
+              "Use seasoned vintages"
+            ],
+            [
+              "Looking only at the average",
+              "Look at the marginal band"
+            ],
+            [
+              "Raising the cutoff without cost",
+              "Price the profit given up"
+            ],
+            [
+              "Not asking how appetite is defined",
+              "Ask for the metric and limit"
+            ],
+            [
+              "No trigger or next step",
+              "Set a number and a date"
+            ]
+          ]
+        }
+      ],
+      "table": {
+        "title": "Capital One style checklist",
+        "headers": [
+          "Do this",
+          "Why",
+          "Example here"
+        ],
+        "rows": [
+          [
+            "Define the appetite metric and limit",
+            "Judgment needs a yardstick",
+            "Net loss at most 5.0%"
+          ],
+          [
+            "Compute today and stress it",
+            "Shows current and future risk",
+            "4.15% now, 5.40% at +30%"
+          ],
+          [
+            "Find the breach point",
+            "Shows how thin the margin is",
+            "Losses can rise 20.5%"
+          ],
+          [
+            "Look at the marginal band",
+            "Averages hide risk",
+            "20% of accounts, 43% of losses"
+          ],
+          [
+            "Recommend with a trigger",
+            "Clear decision rule",
+            "Raise to 660 if loss hits 4.5%"
+          ]
+        ]
+      }
+    },
+    "followups": [
+      {
+        "q": "What would make you tighten the cutoff today?",
+        "a": "If the appetite limit were 4.0%, today's 4.15% is already outside. I would raise the cutoff to 660, which gives 2.94%."
+      },
+      {
+        "q": "What if the marginal band stops paying?",
+        "a": "It breaks even at an 11.5% loss rate on a $2,000 balance with $230 revenue. If the band passes that, the accounts lose money and I would tighten."
+      },
+      {
+        "q": "How would you stress the portfolio better?",
+        "a": "Use a different uplift by band, since lower bands usually react more, and test unemployment scenarios from past downturns."
+      },
+      {
+        "q": "What other metrics would you watch?",
+        "a": "Early delinquency, roll rates, utilization and approval volume by band."
+      },
+      {
+        "q": "Why not raise the cutoff now to be safe?",
+        "a": "It would give up about $5M a year of profit while the portfolio is under the limit. A trigger with a ready plan balances safety and profit."
+      }
+    ],
+    "pitfalls": [
+      "Checking only today's loss rate and not stressing it.",
+      "Using young, immature accounts to judge losses.",
+      "Looking only at the average and missing the marginal band.",
+      "Raising the cutoff without pricing what it costs in profit.",
+      "Giving no trigger or next step."
+    ]
   }
 ];
